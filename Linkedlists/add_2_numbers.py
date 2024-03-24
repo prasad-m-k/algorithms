@@ -33,23 +33,22 @@ class Solution:
             if (l1  and l2) :
                 self.inserAtEnd((carry + l1.val + l2.val) % 10)
                 carry = (carry + l1.val + l2.val) // 10
+                l1=l1.next
+                l2=l2.next
             elif (l1 ):
                 self.inserAtEnd((carry + l1.val) % 10)
                 carry = (carry + l1.val) // 10
+                l1=l1.next
             elif (l2 ):
                 self.inserAtEnd((carry + l2.val) % 10)
                 carry = (carry + l2.val) // 10
-            
+                l2=l2.next
+
             if (l1 is None) and (l2 is None):
                 if (carry > 0):
                     self.inserAtEnd(carry)
                 break
-            
-            if(l1):
-                l1=l1.next
-            if(l2): 
-                l2=l2.next
-            
+
         self.head.dump()
         return self.head
         
@@ -125,3 +124,4 @@ Solution().addTwo(node1, node2)
         return result
 
 '''
+

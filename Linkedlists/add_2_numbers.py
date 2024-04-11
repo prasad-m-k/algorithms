@@ -124,4 +124,3 @@ Solution().addTwo(node1, node2)
         return result
 
 '''
-

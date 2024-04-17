@@ -32,6 +32,21 @@ def reverse_int(num):
 
 def getUniformIntegerCountInInterval(A: int, B: int) -> int:
   # Write your code here
+  if A < 0 or B < 0 or  A > B or A > 10 ** 12:
+      return 0
+  x="Total uniform numbers between [" + str(A) + " - " + str(B) + "]"
+  count = 0
+  while A <= B:
+      print(A)
+      d, tens=reverse_int(A)
+      count += d
+      A += tens+tens//10
+  
+  print(x, count)
+  return count
+
+def getUniformIntegerCountInInterval_with_ret_array(A: int, B: int) -> int:
+  # Write your code here
   print("--------------------")
   if A < 0 or B < 0 or  A > B or A > 10 ** 12:
       return 0
@@ -56,6 +71,8 @@ def getUniformIntegerCountInInterval(A: int, B: int) -> int:
   return count
 
 
+getUniformIntegerCountInInterval(75,300)
+exit(0)
 #getUniformIntegerCountInInterval(1,1)
 getUniformIntegerCountInInterval(1,9)
 #getUniformIntegerCountInInterval(0,9)
@@ -68,7 +85,6 @@ getUniformIntegerCountInInterval(110,340)
 #getUniformIntegerCountInInterval(99,100)
 #getUniformIntegerCountInInterval(75,100)
 
-getUniformIntegerCountInInterval(75,300)
 getUniformIntegerCountInInterval(9999999999,999999999999)
 #getUniformIntegerCountInInterval(999999999999,999999999999)
 

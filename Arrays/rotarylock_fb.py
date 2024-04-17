@@ -6,12 +6,15 @@ from typing import List
 def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
   # Write your code here
     time = 0
-    C.insert(0, 1)
+    #C.insert(0, 1)
+    C[0:0]=[1]
     ind = 1
-    while (ind < M+1):
+    while (ind <= M):
         fwd = (C[ind] - C[ind-1]) % N
         rev = (C[ind-1] - C[ind]) % N
         #print(f"fwd={fwd}, rev={rev}")
+        print(f"distance between {C[ind]} & {C[ind-1]} = {fwd}")
+        print(f"distance between {C[ind-1]} & {C[ind]} = {rev}")
         time += min( fwd, rev)
         ind += 1
 

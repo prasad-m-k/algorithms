@@ -4,20 +4,23 @@ def isPalindrome1( s: str) -> bool:
     return x==x[::-1]
     
 def isPalindrome(s):
+    
     print(s)
     if len(s)<=1:
         return True
 
-    if not s[0].isalnum():
-        print(f"\"{s[0]}\" is not alnum")
-        return isPalindrome(s[1:])
-    if not s[len(s)-1].isalnum():
-        return isPalindrome(s[:len(s)-1])
-    
+    L, R = 0, len(s)-1
+    while(not s[L].isalnum()):
+        print(f"\"{s[L]}\" is not alnum")
+        L += 1
+    while(not s[R].isalnum()):
+        print(f"\"{s[R]}\" is not alnum")
+        R -= 1
 
-    return (s[0].lower() == s[len(s)-1].lower()) and isPalindrome(s[1:len(s)-1])
 
-#x=isPalindrome("malayalam1!")
+    return (s[L].lower() == s[R].lower()) and isPalindrome(s[L+1:R-1])
+
+print(isPalindrome("malayalam!"))
 #x=isPalindrome("A man, a plan, a canal: Panama")
 #x=isPalindrome("race a car")
 #x=isPalindrome(" ")
@@ -29,3 +32,11 @@ print(x)
 #print(isPalindrome("malayalam1!"))
 #print(isPalindrome("abac"))
 #print(isPalindrome("ab ba"))
+
+'''
+if not s[0].isalnum():
+    print(f"\"{s[0]}\" is not alnum")
+    return isPalindrome(s[1:])
+if not s[len(s)-1].isalnum():
+    return isPalindrome(s[:len(s)-1])
+'''

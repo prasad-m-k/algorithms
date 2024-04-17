@@ -39,6 +39,27 @@ class Solution(object):
     print(len(results), len(nums))
     return results
 
+def closest_3sum(nums, target):
+  nums.sort()
+  result = nums[:3]
+
+  for i in range(len(nums) - 2):
+    l = i + 1
+    r = len(nums) - 1
+
+    while l < r:
+      if abs(target - (nums[i] + nums[l] + nums[r])) < abs(target - sum(result)):
+        result = [nums[i], nums[l], nums[r]]
+
+      curr_sum = nums[i] + nums[l] + nums[r]
+      if curr_sum == target:
+        return result
+      elif curr_sum < target:
+        l += 1
+      else:
+        r -= 1
+
+  return result
   def threeSum2(self,nums):
         #nums.sort()
         summap={}

@@ -14,23 +14,25 @@ class Node(object):
 
     def preorder(self, n):
         if n:
-            print(n.val)
+            print("\t\t", n.val)
         if n.left:
-            preorder(n.val)
+            self.preorder(n.val)
         if n.right:
-            preoder(n.val)
+            self.preoder("\t\t\t\t",n.val)
 
     def __isValidHelper(self, n, low, high):
         if not n:
             return True
         val = n.val
-        return ((low < val and high > val) and
+        print(f" {low} < {val} < {high}")
+        return ((low < val and val < high) and
                 self.__isValidHelper(n.left,low,n.val) and
                 self.__isValidHelper(n.right,n.val,high))
         
     def isValid(self, n):
         return self.__isValidHelper(n, float('-inf'), float('inf'))
         
+ 
  
 node = Node(5)
 node.left = Node(4)
@@ -40,5 +42,5 @@ node.left.left=Node(2)
 node.left.right=Node(3)
 node.right.right=Node(9)
 print(node.isValid(node))
-print("Tree inorder:")
+#print("Tree inorder:")
 node.inorder(node)

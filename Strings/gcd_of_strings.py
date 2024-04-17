@@ -9,7 +9,7 @@ class Solution:
             return "XXX"
         # If strings are equal than return the substring from 0 to gcd of size(str1), size(str2)
         
-        #print(gcd(len(str1),len(str2)))
+        print(gcd(len(str1),len(str2)))
         #print(gcd(len(str2)))
         return str1[:gcd(len(str1), len(str2))]
 
@@ -41,6 +41,7 @@ str2 = "ABC"
 str1 = "TAUXXTAUXXTAUXXTAUXXTAUXX"
 str2 = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"
 print("solution=", Solution().gcdOfStrings(str1, str2))
+print("solution=", Solution().gcdOfStrings2(str1, str2))
 
 #exit(0)
 

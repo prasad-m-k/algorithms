@@ -1,4 +1,5 @@
 from typing import List
+from collections import deque
 
 class ListNode():
     
@@ -30,7 +31,26 @@ class singleList():
         ret += "None"
         ret += " (" + str(self.size) + ")"
         return ret
+    
+    def get_head(self) -> ListNode:
+        return self.head
 
+    def inser_at_begin(self, val):
+        new_node=ListNode(val)
+        new_node.next=self.head
+        self.head=new_node
+        self.size += 1
+    
+    def insert_at_end(self, val):
+        if not self.head:
+            self.head = ListNode(val)
+            return
+        curr = self.head
+        while(curr.next):
+            curr = curr.next
+        curr.next = ListNode(val)
+        self.size += 1
+        
     def __insert_at_head(self, val: ListNode) -> None:
         val.next = self.head
         self.head = val
@@ -125,7 +145,32 @@ class singleList():
                 else:
                     node=node.next
                     prev=prev.next
+    
+    def reverse_stack(self):
+        curr = self.head
+        stack = deque()
+        ret = ""
+        while(curr):
+            stack.insert(0,curr.value)
+            curr=curr.next
+        
+        for n in stack:
+            ret += "[" + str(n) + "]"
+            ret += " -> "
             
+        ret += "None"
+        print(ret)
+    
+    def reverse_recursive2(self,  node: ListNode):
+        
+        if node is None or node.next is None:
+            return node
+        
+        node1 = self.reverse_recursive(node.next)
+        node.next.next = node
+        node.next = None
+        
+        return node1
 
 
 if __name__ == "__main__":
@@ -157,3 +202,11 @@ if __name__ == "__main__":
     print(n)
     n.delete_position(0)
     print(n)
+    n.inser_at_begin(33)
+    print(n)
+    n.insert_at_end(43)
+    print(n)
+    N = n.get_head()
+    R = singleList()
+    R = n.reverse_recursive(N)
+    print(R)

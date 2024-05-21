@@ -2,6 +2,35 @@
 from typing import List
 
 class Solution:
+    def merge(self, x, y):
+        return [min(x[0],y[0]), max(x[1], y[1])]
+
+    def islater(self, x, y): #if x is later than y
+        return (x[0] > y[1])
+
+    def isprev(self, x, y): #if x is later than y
+        return (x[1] < y[0])
+
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        if len(intervals) == 0:
+            return [newInterval]
+        if len(newInterval) == 0:
+            return intervals
+        
+        res = []
+        for i,interval in enumerate(intervals):
+            if self.isprev(newInterval, interval): 
+                res.append(newInterval)
+                return res + intervals[i:]
+            elif self.islater( newInterval, interval): 
+                res.append(interval)
+            else: 
+                newInterval = (self.merge(newInterval,interval))
+                
+        res.append(newInterval)
+        
+        return res
+class Solution1:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         print(f"{intervals}, {newInterval}")
         ilen=len(intervals)
@@ -61,8 +90,6 @@ newInterval = [2,5]
 
 
 newInterval = [0,0]
-intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
-newInterval = [4,8]
 
 intervals = [[1,3],[6,8],[9,9]]
 newInterval = [7,8]
@@ -74,8 +101,13 @@ newInterval = [6,6]
 intervals = [[1,5]]
 newInterval = [6,8]
 
+
 intervals = [[0,2],[3,5],[6,8],[10,12],[13,15]]
 newInterval = [4,7]
+
+
+intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
+newInterval = [4,8]
 
 
 print(Solution().insert(intervals, newInterval))

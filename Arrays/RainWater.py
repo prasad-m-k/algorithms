@@ -23,3 +23,18 @@ class Solution:
             result += max(0, min(height[i][0], height[i][1]) - height[i][2])
             max_left = max(max_left, height[i][2])
         return result
+    
+    #Working
+    def trap2(self, height: List[int]) -> int:
+        water = [0] * len(height)
+        for i in range(1,len(height)):
+            max_left =  max(height[:i])
+            max_right = max(height[i:])
+            #print(max_left)
+            #print(max_right)
+            water[i]= min (max_left,max_right)-height[i] if  min (max_left,max_right)-height[i] >= 0 else 0
+            #water[i]
+        #print(water)
+
+        return sum(water)
+    

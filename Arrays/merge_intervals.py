@@ -12,7 +12,7 @@ class Solution:
         return [min(x[0],y[0]), max(x[1],y[1])]
 
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        #print(intervals)
+        print(intervals)
         intervals.sort(key=lambda interval: interval[0])
         print(intervals)
         interval_len=len(intervals)

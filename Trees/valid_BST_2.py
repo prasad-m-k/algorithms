@@ -1,24 +1,7 @@
-from collections import deque
+from typing import List
+from typing import Optional
 
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-
-    def __str__(self):
-        s="\t" + str( self.val)+"\n"
-        s += "\t/\\"
-        if self.left:
-            s+="\n       "+str(self.left.val)
-        else:
-            s+="\n    None"
-        if self.right:
-            s += "  " +str(self.right.val)
-        else:
-            s+="  None"
-        return s
-
+# Definition for a binary tree node.
 class BstNode:
 
     def __init__(self, val):
@@ -91,65 +74,36 @@ class BstNode:
         return lines, n + m + u, max(p, q) + 2, n + u // 2
 
 
-    def lowest_common_ancestor(self, root, p, q):
-        """
-        Function to find the lowest common ancestor in a BST.
-        :param root: TreeNode, the root of the BST
-        :param p: TreeNode, first node
-        :param q: TreeNode, second node
-        :return: TreeNode, the lowest common ancestor of p and q
-        """
-        current = root
-        while current:
-            if p < current.val and q < current.val:
-                current = current.left
-            elif p > current.val and q > current.val:
-                current = current.right
-            else:
-                #print(current.val)
-                return current.val  # This is the split point, so it's the LCA
-
-    def height(self, root):
-        height = 0
+    def isValidBST(self, root) -> bool:
         if root is None:
-            return height
-        ldepth=self.height(root.left)
-        rdepth=self.height(root.right)
-    
-        return max(rdepth,ldepth) + 1
+            return True
 
+        if root is not None and root.left is None and root.right is None:
+            return True
+
+        if root and root.left and root.val <= root.left.val:
+            print(f"{root.val} <= {root.left.val}")
+            return False
+
+        if root and root.right and root.val >= root.right.val:
+            print(f"{root.val} >= {root.right.val}")
+            return  False
+
+        lvalid = self.isValidBST(root.left)
+        rvalid = self.isValidBST(root.right)
+
+        return lvalid and rvalid
+    
 # Example usage
 if __name__ == "__main__":
-    # Create the BST
-    #        20
-    #       /  \
-    #     10    30
-    #    /  \
-    #   5   15
-    #      /  \
-    #     12   18
-    #root = TreeNode(20)
-    #root.left = TreeNode(10)
-    #root.right = TreeNode(30)
-    #root.left.left = TreeNode(5)
-    #root.left.right = TreeNode(15)
-    #root.left.right.left = TreeNode(12)
-    #root.left.right.right = TreeNode(18)
-    #root.left.right.right.left = TreeNode(20)
-    #root.right.left = TreeNode(32)
-    #root.right.left.right = TreeNode(36)
-    #root.right.left.right.left = TreeNode(38)
-    
-    # Find LCA of 5 and 18
-    #lca = lowest_common_ancestor(root, root.left.left, root.left.right.right)
-    #print(f"LCA of 5 and 18 is: {lca.val}")  # Output should be 10
-    
-    #print("height=", height(root))
-    n = BstNode(0)
-    x = [1, 2, 3, 5, 4, 7, 9, 10, 22, 30]
+    n = BstNode(5)
+    x = [4,6,3,7]
     for i in x:
         n.insert(i)
 
     n.display()
-    print("height=", n.height(n))
-    print(n.lowest_common_ancestor(n,10,30))
+    
+    print(n)
+
+
+

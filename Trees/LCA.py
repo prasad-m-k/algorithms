@@ -5,17 +5,7 @@ class TreeNode:
         self.right = None
 
     def __str__(self):
-        s="\t" + str( self.val)+"\n"
-        s += "\t/\\"
-        if self.left:
-            s+="\n       "+str(self.left.val)
-        else:
-            s+="\n    None"
-        if self.right:
-            s += "  " +str(self.right.val)
-        else:
-            s+="  None"
-        return s
+        return str(self.val)
 
 def lowest_common_ancestor(root, p, q):
     """
